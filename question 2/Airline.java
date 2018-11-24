@@ -10,7 +10,7 @@ public class Airline {
     ArrayList<Aircraft> aircraft;   // list of aircraft for this airline
 /**
  * Object Airline constructor
- * @param ID (String) - airport ID code
+ * @param ID (String) - airline ID code
  * @param flights (Arraylist<Flight>) - list of flights at airport
  * @param aircraft (Arraylist<Aircraft>) - list of aircrafts at the airport
  */
@@ -19,42 +19,70 @@ public class Airline {
         this.flights = flights;
         this.aircraft = aircraft;
     }
-
+    /**
+     * gets ID of airport
+     * @return (String) - ID of airline
+     */
     public String getId() {
         return id;
     }
-
+    /**
+     * gets list of flights
+     * @return (Arraylist<Flight>) - list of all flights
+     */
     public ArrayList<Flight> getFlights() {
         return flights;
     }
-
+    /**
+     * gets list of aircrafts
+     * @return (Arraylist<Aircraft>) - list of all aircrafts
+     */
     public ArrayList<Aircraft> getAircraft() {
         return aircraft;
     }
-    
-    // add  an aircraft to an airline
-    // If the aircraft is already owned by the airline then the method does nothing.   
+    /**
+     * add  an aircraft to an airline
+     * If the aircraft is already owned by the airline then the method does nothing.
+     * @param aircraft (Aircraft) - aircraft to add
+     */
     
     public void owns(Aircraft aircraft){
        if (!this.aircraft.contains(aircraft))
     	  this.aircraft.add(aircraft);
            	
     } 
-    //	Write a method in the Airline class called printFlightByName() that displays a list of all flights who are own by the current airline. 
-    //This method should show all flights information
+    /**
+     * shows all flight information
+     */
    public void printFlightByName(){
 	   for (Flight f: flights){
 		   System.out.println(f.getId() + " "+ f.getAircraft()+ " " + f.getArrivalTime() + " " + f.getDepartureTime());
 	   }   
    } 
    
-   /*
-   //returns an ArrayList containing all pilots who are working in the with the given code.   
-     public ArrayList<Pilots> pilotsWorkingForAirlines(int code){
-    	 
-        	 
+   
+   /**
+    * returns an ArrayList containing all pilots who are working in the with the given code. 
+    * @param code (int) - pilot code needed
+    * @return ar (ArrayList<Pilots>) - array of pilots with code needed
+    */  
+   public ArrayList<Pilots> pilotsWorkingForAirlines(int code){
+         ArrayList<Pilots> ar = new ArrayList<Pilots>();
+         for (Aircraft air : aircraft){
+             for (Pilots pilot :  air.pilots){
+                 if(pilot.getId() == code){
+                     ar.add(pilot);
+                 }
+             }
+         }
+         return ar;
      }
-   */
+   /**
+    * returns flights departing at a specific time
+    * @param airport (Airport) - airport object information
+    * @param depratTime (Date) - time flights leave
+    * @return list (ArrayList<Flights>) - list of flights
+    */  
      public ArrayList<Flight> getDepartureFlightByAirport(Airport airport, String departTime){
 	       ArrayList<Flight> list = new ArrayList<Flight>();
     	   for (int i=0; i<flights.size();i++){
@@ -65,7 +93,12 @@ public class Airline {
            return list;
      
      }   
-    
+   /**
+    * returns flights arriving at a specific time
+    * @param airport (Airport) - airport object information
+    * @param arrivalTime (Date) - time flights arrive
+    * @return list (ArrayList<Flights>) - list of flights
+    */ 
      public ArrayList<Flight> getArrivalFlightByAirport(Airport airport, String arrivalTime){
 	       ArrayList<Flight> list = new ArrayList<Flight>();
   	   for (int i=0; i<flights.size();i++){

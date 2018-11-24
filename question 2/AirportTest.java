@@ -1,20 +1,11 @@
-
- /*
-	SOFE 2710 Assignment 2 
-	
- */
-
- 
- 
-package airporttest; 
 import java.util.ArrayList;
 import java.util.*;
 import java.text.*;
 
 
 /**
- *
- * @author  
+ * SOFE 2710 Assignment 2
+ * @author Pujan Parikh 100654771
  */
  
  
@@ -56,6 +47,15 @@ public class AirportTest {
 	ArrayList<Aircraft> aircrafts= new  ArrayList<Aircraft>(); 
 	aircrafts.add(boeing787);	
 	Airline airCanad = new Airline("Air Canada",flights,aircrafts);
+
+
+	airCanad.printFlightByName();
+
+	ArrayList<Pilots> ar = airCanad.pilotsWorkingForAirlines(500);
+
+	for (Pilots pilot : ar){
+		System.out.println(pilot.getName());
+	}
     
   }  
     
